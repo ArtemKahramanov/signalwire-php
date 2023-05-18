@@ -1,6 +1,7 @@
 <?php
 namespace SignalWire;
 use Monolog\Logger;
+use Monolog\Level;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 
@@ -31,7 +32,7 @@ class Log {
 		$output = "[%datetime%] %channel%.%level_name%: %message% \n";
 		$formatter = new LineFormatter($output);
 
-		$level = isset($_ENV['DEBUG']) ? Logger::DEBUG : Logger::INFO;
+		$level = isset($_ENV['DEBUG']) ? Level::Debug : Level::Info;
 		$streamHandler = new StreamHandler('php://stdout', $level);
 		$streamHandler->setFormatter($formatter);
 
